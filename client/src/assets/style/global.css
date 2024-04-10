@@ -1,0 +1,203 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif !important;
+}
+
+#root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+:root {
+  --main--color: #f7770f !important;
+  --sub--color: #de6b0d !important;
+  --transition: all 0.2s linear !important;
+}
+
+.main--color {
+  color: var(--main--color) !important;
+}
+
+.main--baground {
+  background-color: var(--main--color) !important;
+}
+
+/* Header */
+.header__img {
+  height: 600px;
+  width: 100%;
+}
+
+.header__content {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+}
+
+.header__content--text {
+  transition: all 0.3s linear;
+  color: #fff;
+  cursor: pointer;
+}
+
+.header__content--text:hover {
+  color: #f7770f;
+}
+
+.header__sub--img {
+  height: 125px;
+  width: 100%;
+}
+
+.header__content--subtext {
+  transition: all 0.3s ease;
+  color: #000;
+  cursor: pointer;
+}
+
+.header__content--subtext:hover {
+  color: #f7770f;
+}
+
+.announcement__container {
+  position: relative;
+  outline: none;
+}
+
+.announcement__detail {
+  width: 80%;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  padding: 1rem;
+  transition: all 0.5s ease;
+}
+
+.announcement__container:hover .announcement__detail {
+  opacity: 1;
+  bottom: 10%;
+}
+
+.announcement__image {
+  height: 400px;
+}
+
+.active__category {
+  color: var(--main--color) !important;
+}
+
+.announcement__card img {
+  height: 200px;
+}
+
+.card__categories {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.footer__content {
+  background-color: #100f0f;
+}
+
+/* Navbar */
+/* .dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  position: relative;
+}
+
+.dropdown-menu:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  background-color: var(--main--color);
+  height: 3px;
+  width: 100%;
+} */
+
+/* Title Link */
+.link__content {
+  transition: var(--transition);
+  color: #000;
+  cursor: pointer;
+}
+
+.link__content:hover {
+  color: var(--main--color);
+}
+
+/* Banner Content */
+.banner {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../image/school.jpg") no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  padding: 10rem 0;
+}
+
+.banner__content {
+  margin-left: 5rem;
+}
+
+/* Footer Link */
+.link__footer {
+  color: #888780;
+  transition: var(--transition);
+}
+
+.link__footer:hover {
+  color: var(--main--color);
+}
+
+/* Main Button */
+.main--button {
+  color: #fff;
+  background-color: var(--main--color);
+  transition: var(--transition);
+  border: 1px solid var(--main--color) !important;
+}
+
+.main--button:hover {
+  background-color: transparent;
+  color: var(--main--color);
+}
+
+/* Search */
+.search__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5%;
+}
+
+/* Input File */
+.upload-icon {
+  position: absolute;
+  bottom: 0%;
+  right: 35%;
+  overflow: hidden;
+}
+
+.input-file {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  opacity: 0;
+  transform: scale(5);
+  cursor: pointer;
+}

@@ -1,0 +1,11 @@
+.eye-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5%;
+  cursor: pointer;
+}
+
+.form-control.error {
+  border: 1px solid red !important;
+}
