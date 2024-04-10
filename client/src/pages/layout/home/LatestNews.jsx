@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import DateFormat from "@Components/container/DateFormat";
-import ContentButton from "@Components/button/ContentButton";
 import { fetchNews } from "@Services/api/fetchNews";
-import Categories from "@Components/container/Categories";
 import SectionContainer from "@Components/container/SectionContainer";
 import TitleContainer from "@Components/container/TitleContainer";
 import Slick from "@Components/slick/Slick";
+import LoadingSkeleton from "@Components/loading/LoadingSkeleton";
+import AnnouncementCard from "@Components/container/AnnouncementCard";
 
 const LatestNews = () => {
   const navigate = useNavigate();
@@ -16,41 +15,29 @@ const LatestNews = () => {
   };
 
   return (
-    <SectionContainer>
+    <div className="container py-5">
       <div className="d-flex justify-content-between mb-3">
         <TitleContainer>Latest News</TitleContainer>
         {news.length > 4 && <p className="mb-0">see more</p>}
       </div>
       {isLoading ? (
-        <p>Loading...</p>
-      ) : (
+        <LoadingSkeleton />
+      ) : !isLoading && news ? (
         <Slick data={news} no={4}>
           {news.map((announcement, index) => (
-            <div className="card border-0 px-3 announcement__card" key={index}>
-              <div className="position-relative">
-                <img
-                  src={`http://localhost:3000/image/${announcement.image}`}
-                  alt={announcement.title}
-                  className="card-img-top"
-                />
-                <div className="card__categories">
-                  <Categories category={announcement.categories} />
-                </div>
-              </div>
-              <div className="card-body px-0">
-                <DateFormat
-                  style={"text-black-50"}
-                  date={announcement.createdAt}
-                />
-                <ContentButton onClick={() => hadleContent(announcement._id)}>
-                  <p>{announcement.title}</p>
-                </ContentButton>
-              </div>
-            </div>
+            <AnnouncementCard
+              index={announcement._id}
+              announcement={announcement}
+              handleClick={() => hadleContent(announcement._id)}
+            />
           ))}
         </Slick>
+      ) : (
+        <div className="text-center my-5">
+          <p className="fs-5">There is no news available</p>
+        </div>
       )}
-    </SectionContainer>
+    </div>
   );
 };
 

@@ -9,7 +9,7 @@ const About = () => {
   return (
     <>
       <Container>
-        <SectionContainer>
+        <div className="container py-5">
           <div className="row align-items-center ">
             <div className="col-6">
               <img src={uccImage} alt="ucc" className="img-fluid" />
@@ -58,7 +58,7 @@ const About = () => {
               </AboutContent>
             </div>
           </div>
-        </SectionContainer>
+        </div>
       </Container>
     </>
   );

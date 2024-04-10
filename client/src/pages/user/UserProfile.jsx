@@ -115,124 +115,126 @@ const UserProfile = () => {
 
   return (
     <Container>
-      <div className="my-5">
-        <h2>User Profile</h2>
-        <p className="mb-0">Set your account settings down below</p>
-      </div>
-      <div className="text-center mb-5 d-flex justify-content-center">
-        <ProfileButton to="/user/profile" label="Profile" />
-        <ProfileButton to="/user/bookmark" label="Bookmark" />
-      </div>
-      <div className="mb-3 row">
-        <div className="col-12 col-md-8 col-lg-6 mx-auto">
-          <form onSubmit={handleSubmit}>
-            <Avatar
-              src={
-                user.image
-                  ? URL.createObjectURL(user.image)
-                  : `http://localhost:3000/image/${user.avatar}`
-              }
-              handleChange={handleChange}
-            />
-            <div className="row mb-2">
-              <div className="col-12 col-md-6 mb-2 mb-md-0">
-                <label htmlFor="username" className="form-label mb-2">
-                  Username
-                </label>
-                <Input
-                  type={"text"}
-                  name={"username"}
-                  style={validationErrors.username ? "error" : ""}
-                  value={user.username}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                />
-                {validationErrors.username && (
+      <div className="container">
+        <div className="my-5">
+          <h2>User Profile</h2>
+          <p className="mb-0">Set your account settings down below</p>
+        </div>
+        <div className="text-center mb-5 d-flex justify-content-center">
+          <ProfileButton to="/user/profile" label="Profile" />
+          <ProfileButton to="/user/bookmark" label="Bookmark" />
+        </div>
+        <div className="mb-3 row">
+          <div className="col-12 col-md-8 col-lg-6 mx-auto">
+            <form onSubmit={handleSubmit}>
+              <Avatar
+                src={
+                  user.image
+                    ? URL.createObjectURL(user.image)
+                    : `http://localhost:3000/image/${user.avatar}`
+                }
+                handleChange={handleChange}
+              />
+              <div className="row mb-2">
+                <div className="col-12 col-md-6 mb-2 mb-md-0">
+                  <label htmlFor="username" className="form-label mb-2">
+                    Username
+                  </label>
+                  <Input
+                    type={"text"}
+                    name={"username"}
+                    style={validationErrors.username ? "error" : ""}
+                    value={user.username}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                  />
+                  {validationErrors.username && (
+                    <small className="text-danger">
+                      {validationErrors.username}
+                    </small>
+                  )}
+                </div>
+                <div className="col-12 col-md-6">
+                  <label htmlFor="email" className="form-label">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    className="form-control"
+                    name="email"
+                    disabled
+                    value={user.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </div>
+              </div>
+              <div className="mb-2">
+                <label className="form-label">New Password</label>
+                <div className="position-relative">
+                  <Input
+                    type={showNewPassword ? "text" : "password"}
+                    name={"newPassword"}
+                    style={validationErrors.newPassword ? "error" : ""}
+                    value={password.newPassword}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                  />
+                  <TogglePassword
+                    showPassword={showNewPassword}
+                    handleTogglePassword={handleToggleNewPassword}
+                  />
+                </div>
+                {validationErrors.newPassword && (
                   <small className="text-danger">
-                    {validationErrors.username}
+                    {validationErrors.newPassword}
+                  </small>
+                )}
+                <div className="form-text">
+                  Your password must be 8-20 characters long, contain atleast
+                  one capital letters, numbers, and special characters
+                </div>
+              </div>
+              <div className="mb-2">
+                <label className="form-label">Repeat New Password</label>
+                <div className="position-relative">
+                  <Input
+                    type={showRepeatPassword ? "text" : "password"}
+                    name={"repeatPassword"}
+                    style={validationErrors.repeatPassword ? "error" : ""}
+                    value={password.repeatPassword}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                  />
+                  <TogglePassword
+                    showPassword={showRepeatPassword}
+                    handleTogglePassword={handleToggleRepeatPassword}
+                  />
+                </div>
+                {validationErrors.repeatPassword && (
+                  <small className="text-danger">
+                    {validationErrors.repeatPassword}
                   </small>
                 )}
               </div>
-              <div className="col-12 col-md-6">
-                <label htmlFor="email" className="form-label">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="form-control"
-                  name="email"
-                  disabled
-                  value={user.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+              <div className="d-flex flex-column align-items-center mt-3">
+                <ActionButton
+                  style={"btn btn-primary mb-5 w-50 main--button"}
+                  type={"submit"}
+                  label={"Save changes"}
+                  isLoading={isLoading}
+                  handleClick={handleSubmit}
+                />
+                <ActionButton
+                  style={"btn btn-outline-danger mb-5 w-50"}
+                  type={"submit"}
+                  label={"Delete Account"}
+                  handleClick={() => handleDelete(user._id)}
                 />
               </div>
-            </div>
-            <div className="mb-2">
-              <label className="form-label">New Password</label>
-              <div className="position-relative">
-                <Input
-                  type={showNewPassword ? "text" : "password"}
-                  name={"newPassword"}
-                  style={validationErrors.newPassword ? "error" : ""}
-                  value={password.newPassword}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                />
-                <TogglePassword
-                  showPassword={showNewPassword}
-                  handleTogglePassword={handleToggleNewPassword}
-                />
-              </div>
-              {validationErrors.newPassword && (
-                <small className="text-danger">
-                  {validationErrors.newPassword}
-                </small>
-              )}
-              <div className="form-text">
-                Your password must be 8-20 characters long, contain atleast one
-                capital letters, numbers, and special characters
-              </div>
-            </div>
-            <div className="mb-2">
-              <label className="form-label">Repeat New Password</label>
-              <div className="position-relative">
-                <Input
-                  type={showRepeatPassword ? "text" : "password"}
-                  name={"repeatPassword"}
-                  style={validationErrors.repeatPassword ? "error" : ""}
-                  value={password.repeatPassword}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                />
-                <TogglePassword
-                  showPassword={showRepeatPassword}
-                  handleTogglePassword={handleToggleRepeatPassword}
-                />
-              </div>
-              {validationErrors.repeatPassword && (
-                <small className="text-danger">
-                  {validationErrors.repeatPassword}
-                </small>
-              )}
-            </div>
-            <div className="d-flex flex-column align-items-center mt-3">
-              <ActionButton
-                style={"btn btn-primary mb-5 w-50 main--button"}
-                type={"submit"}
-                label={"Save changes"}
-                isLoading={isLoading}
-                handleClick={handleSubmit}
-              />
-              <ActionButton
-                style={"btn btn-outline-danger mb-5 w-50"}
-                type={"submit"}
-                label={"Delete Account"}
-                handleClick={() => handleDelete(user._id)}
-              />
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </Container>

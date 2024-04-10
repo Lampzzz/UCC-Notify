@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { FaRegBookmark, FaBookmark } from "react-icons/fa6";
 import { useGetAnnouncementQuery } from "@Services/redux/api/announcementApiSlice";
 import Container from "@Components/container/Container";
 import SectionContainer from "@Components/container/SectionContainer";
@@ -31,11 +32,16 @@ const Content = () => {
               <div className="col-12 col-md-8">
                 {announcement && (
                   <>
-                    <img
-                      src={`http://localhost:3000/image/${announcement.image}`}
-                      className="header__img rounded-3"
-                      alt={announcement.title}
-                    />
+                    <div className="bookmark__container">
+                      <img
+                        src={`http://localhost:3000/image/${announcement.image}`}
+                        className="header__img rounded-3"
+                        alt={announcement.title}
+                      />
+                      <div className="bookmark__icon">
+                        <FaRegBookmark size={30} color="#" />
+                      </div>
+                    </div>
                     <h4 className="fw-semibold mt-4 mb-3">
                       {announcement.title}
                     </h4>

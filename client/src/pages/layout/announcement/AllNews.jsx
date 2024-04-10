@@ -64,7 +64,7 @@ const AllNews = () => {
 
   return (
     <Container>
-      <SectionContainer>
+      <div className="container py-5">
         <div className="d-flex align-items-center mb-5">
           <SelectInput
             id="categorySelect"
@@ -114,7 +114,7 @@ const AllNews = () => {
             </div>
           ))}
         </div>
-      </SectionContainer>
+      </div>
     </Container>
   );
 };

@@ -201,3 +201,15 @@ body {
   transform: scale(5);
   cursor: pointer;
 }
+
+/* Bookmark */
+.bookmark__container {
+  position: relative;
+}
+
+.bookmark__icon {
+  position: absolute;
+  top: 3%;
+  left: 2%;
+  color: var(--main--color);
+}

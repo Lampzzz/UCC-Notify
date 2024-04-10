@@ -7,8 +7,8 @@ import Textarea from "@Components/form/Textarea";
 const Contact = () => {
   return (
     <Container>
-      <SectionContainer>
-        <h4 className="fw-bold mb-3">Get in Touch</h4>
+      <div className="container py-5">
+        <h4 className="fw-semibold  mb-5">Get in Touch</h4>
         <div className="row">
           <div className="col-6">
             <form>
@@ -47,7 +47,7 @@ const Contact = () => {
             ></iframe>
           </div>
         </div>
-      </SectionContainer>
+      </div>
     </Container>
   );
 };

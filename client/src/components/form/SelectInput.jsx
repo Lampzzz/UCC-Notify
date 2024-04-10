@@ -3,7 +3,7 @@ import React from "react";
 const SelectInput = ({ id, label, value, options, onChange }) => {
   return (
     <div className="d-flex align-items-center me-5">
-      <label htmlFor={id} className="me-3 fs-5 fw-semibold">
+      <label htmlFor={id} className="me-3 fs-5">
         {label}:
       </label>
       <select

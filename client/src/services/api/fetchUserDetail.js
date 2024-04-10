@@ -16,5 +16,5 @@ export const fetchUserDetail = () => {
     }
   }, [userInfo]);
 
-  return { user, setUser };
+  return { user, setUser, userInfo };
 };

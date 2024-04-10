@@ -10,7 +10,7 @@ import { fetchUserDetail } from "@Services/api/fetchUserDetail";
 import AvatarLink from "./AvatarLink";
 
 const Navbar = () => {
-  const { user } = fetchUserDetail();
+  const { userInfo, user } = fetchUserDetail();
 
   return (
     <>
@@ -49,13 +49,13 @@ const Navbar = () => {
                   <NavbarLink link="/about" label="About" />
                   <NavbarLink link="/contact" label="Contact" />
                 </ul>
-                <div className="d-flex align-items-center column-gap-2 ">
+                <div className="d-flex align-items-center column-gap-1 ">
                   <Link to="/search">
                     <button className="btn border-0 ">
-                      <CiSearch size={35} />
+                      <CiSearch size={30} />
                     </button>
                   </Link>
-                  {user ? (
+                  {userInfo || user ? (
                     <div className="dropdown">
                       <div
                         className="btn-group"
@@ -73,7 +73,7 @@ const Navbar = () => {
                     </div>
                   ) : (
                     <LinkButton>
-                      <GoPerson size={50} />
+                      <GoPerson size={30} />
                     </LinkButton>
                   )}
                 </div>

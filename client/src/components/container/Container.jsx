@@ -23,7 +23,7 @@ const Container = ({ children }) => {
     <>
       <Navbar />
       {renderBanner()}
-      <div className="container">{children}</div>
+      {children}
       <Footer />
     </>
   );

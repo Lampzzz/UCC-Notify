@@ -1,11 +1,10 @@
-import { useNavigate } from "react-router-dom";
-import Categories from "@Components/container/Categories";
 import DateFormat from "@Components/container/DateFormat";
 import ContentButton from "@Components/button/ContentButton";
+import Categories from "@Components/container/Categories";
 
-const AnnouncementCard = ({ announcement, announcementID }) => {
+const AnnouncementCard = ({ announcement, index, handleClick }) => {
   return (
-    <div className="card border-0 px-3 announcement__card">
+    <div className="card border-0 px-3 announcement__card" key={index}>
       <div className="position-relative">
         <img
           src={`http://localhost:3000/image/${announcement.image}`}
@@ -18,7 +17,7 @@ const AnnouncementCard = ({ announcement, announcementID }) => {
       </div>
       <div className="card-body px-0">
         <DateFormat style={"text-black-50"} date={announcement.createdAt} />
-        <ContentButton onClick={() => onClickContent(announcement._id)}>
+        <ContentButton onClick={handleClick}>
           <p>{announcement.title}</p>
         </ContentButton>
       </div>

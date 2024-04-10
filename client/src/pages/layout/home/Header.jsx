@@ -44,7 +44,7 @@ const Header = () => {
     ));
 
   return (
-    <div className="my-5">
+    <div className="container my-5">
       <Trending />
       <div className="row">
         <div className="col-12 col-md-8 mb-3 mb-md-0">

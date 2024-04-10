@@ -47,8 +47,8 @@ const Popular = () => {
 
   return (
     <>
-      <SectionContainer>
-        <div className="d-flex align-items-center mb-3">
+      <div className="container py-5">
+        <div className="d-flex align-items-center mb-4">
           <TitleContainer>Most Popular</TitleContainer>
           <div className="d-flex ms-5">
             {categories.map((category, index) => (
@@ -96,7 +96,7 @@ const Popular = () => {
             ))}
           </Slick>
         )}
-      </SectionContainer>
+      </div>
     </>
   );
 };

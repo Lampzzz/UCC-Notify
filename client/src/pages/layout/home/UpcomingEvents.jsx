@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchEvents } from "@Services/api/fetchEvents";
 import Categories from "@Components/container/Categories";
@@ -6,24 +7,31 @@ import TitleContainer from "@Components/container/TitleContainer";
 import Slick from "@Components/slick/Slick";
 import DateFormat from "@Components/container/DateFormat";
 import ContentButton from "@Components/button/ContentButton";
+import LoadingSkeleton from "@Components/loading/LoadingSkeleton";
 
 const UpcomingEvents = () => {
-  const { events, isLoading } = fetchEvents();
   const navigate = useNavigate();
+  const { events, isLoading } = fetchEvents();
+  const [filterEvents, setFilterEvents] = useState([]);
+
+  useEffect(() => {
+    const upcomingEvents = events.filter((event) => event.status !== "Done");
+    setFilterEvents(upcomingEvents);
+  }, [events]);
 
   const hadleContent = (id) => {
     navigate(`/content/${id}`);
   };
 
   return (
-    <SectionContainer>
+    <div className="container py-5">
       <div className="d-flex justify-content-between mb-3">
         <TitleContainer>Upcoming / Ongoing Events</TitleContainer>
         {events.length > 4 && <p className="mb-0">see more</p>}
       </div>
       {isLoading ? (
-        <p>Loading...</p>
-      ) : (
+        <LoadingSkeleton />
+      ) : !isLoading && filterEvents.length > 0 ? (
         <Slick data={events} no={4}>
           {events.map((announcement, index) => (
             <div className="card border-0 px-3 announcement__card" key={index}>
@@ -49,8 +57,14 @@ const UpcomingEvents = () => {
             </div>
           ))}
         </Slick>
+      ) : (
+        <div className="text-center my-5">
+          <p className="fs-5 text-black-50">
+            There is no upcoming or ongoing events
+          </p>
+        </div>
       )}
-    </SectionContainer>
+    </div>
   );
 };
 
