@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { fetchNews } from "@Services/api/fetchNews";
-import SectionContainer from "@Components/container/SectionContainer";
 import TitleContainer from "@Components/container/TitleContainer";
 import Slick from "@Components/slick/Slick";
 import LoadingSkeleton from "@Components/loading/LoadingSkeleton";

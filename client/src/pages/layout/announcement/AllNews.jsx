@@ -1,12 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Container from "@Components/container/Container";
-import SectionContainer from "@Components/container/SectionContainer";
 import { fetchNews } from "@Services/api/fetchNews";
+import Container from "@Components/container/Container";
 import SelectInput from "@Components/form/SelectInput";
-import HoverButton from "@Components/button/HoverButton";
+import DateFormat from "@Components/container/DateFormat";
+import ContentButton from "@Components/button/ContentButton";
 import Categories from "@Components/container/Categories";
 
 const AllNews = () => {
+  const navigate = useNavigate();
   const { news, isLoading } = fetchNews();
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -62,9 +64,13 @@ const AllNews = () => {
     setSortBy(value);
   };
 
+  const hadleContent = (id) => {
+    navigate(`/content/${id}`);
+  };
+
   return (
     <Container>
-      <div className="container py-5">
+      <div className="container mt-5">
         <div className="d-flex align-items-center mb-5">
           <SelectInput
             id="categorySelect"
@@ -106,10 +112,13 @@ const AllNews = () => {
                 </div>
               </div>
               <div className="card-body px-0">
-                <button className="btn p-0 text-start border-0">
-                  <HoverButton>{announcement.title}</HoverButton>
-                </button>
-                <small>{announcement.createdAt}</small>
+                <DateFormat
+                  style={"text-black-50"}
+                  date={announcement.createdAt}
+                />
+                <ContentButton onClick={() => hadleContent(announcement._id)}>
+                  <p>{announcement.title}</p>
+                </ContentButton>
               </div>
             </div>
           ))}

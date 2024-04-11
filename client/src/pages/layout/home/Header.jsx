@@ -22,7 +22,7 @@ const Header = () => {
             <div className="col-5">
               <img
                 src={imagePath(announcement.image)}
-                className="img-fluid rounded-3 "
+                className="img-fluid rounded-3"
                 alt="Announcement Image"
               />
             </div>

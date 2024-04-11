@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 import connection from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import announcementRoute from "./routes/announcementRoute.js";
+import userRoute from "./routes/userRoute.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,6 +33,7 @@ app.use("/image", express.static(path.join(__dirname, "upload/image")));
 // Routes
 app.use("/auth", authRoutes);
 app.use("/announcement", announcementRoute);
+app.use("/user", userRoute);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

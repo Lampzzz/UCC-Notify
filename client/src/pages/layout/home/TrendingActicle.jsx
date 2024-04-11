@@ -1,26 +1,29 @@
 import { fetchAllAnnouncement } from "@Services/api/fetchAllAnnouncement";
-import HoverButton from "@Components/button/HoverButton";
+import DateFormat from "@Components/container/DateFormat";
+import ContentButton from "@Components/button/ContentButton";
 
 const TrendingActicle = () => {
   const { announcements, isLoading } = fetchAllAnnouncement();
   const mostPopular = announcements.slice(0, 3);
 
   return (
-    <div className="mb-5">
-      <h4>Trending</h4>
+    <div className="mb-5 pb-5">
+      <h5>Trending</h5>
       <hr />
-      {mostPopular.map((popular, index) => (
+      {mostPopular.map((announcement, index) => (
         <div className="row mb-3 align-items-center " key={index}>
           <div className="col-5">
             <img
-              src={`http://localhost:3000/image/${popular.image}`}
+              src={`http://localhost:3000/image/${announcement.image}`}
               className="img-fluid rounded-3 "
-              alt={popular.title}
+              alt={announcement.title}
             />
           </div>
           <div className="col-7">
-            <HoverButton>{popular.title}</HoverButton>
-            <small>{popular.createdAt}</small>
+            <ContentButton onClick={() => hadleContent(announcement._id)}>
+              <p>{announcement.title}</p>
+            </ContentButton>
+            <DateFormat style={"text-black-50"} date={announcement.createdAt} />
           </div>
         </div>
       ))}

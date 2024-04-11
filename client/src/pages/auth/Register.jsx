@@ -195,7 +195,7 @@ const Register = () => {
           )}
         </InputContainer>
         <ActionButton
-          style={"btn mt-4 mb-3 w-100 border-0"}
+          style={"btn mt-4 mb-3 w-100 border-0 main--button"}
           type={"submit"}
           label={"Register"}
           isLoading={isLoading}

@@ -8,7 +8,7 @@ const contactInfo = [
   },
   {
     icon: <MdEmail className="me-2" color="#f7770f" />,
-    text: "sleepwell@gmail.com",
+    text: "uccnotify@gmail.com",
   },
   { icon: <FaPhone className="me-2" color="#f7770f" />, text: "+639300311893" },
 ];

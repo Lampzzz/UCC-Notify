@@ -85,10 +85,10 @@ const Search = () => {
 
   return (
     <Container>
-      <SectionContainer>
-        <div className="d-flex flex-column flex-lg-row justify-content-lg-between align-items-start align-items-lg-end mt-4 mb-5">
+      <div className="container">
+        <div className="d-flex flex-column flex-lg-row justify-content-lg-between align-items-start align-items-lg-end my-5">
           <div className="mb-3 mb-lg-0">
-            <h1>Search</h1>
+            <h2>Search</h2>
             <p className="mb-0">Effortlessly find news and events for you</p>
           </div>
           {announcements.length > 0 ? (
@@ -158,7 +158,7 @@ const Search = () => {
             </div>
           ))}
         </div>
-      </SectionContainer>
+      </div>
     </Container>
   );
 };

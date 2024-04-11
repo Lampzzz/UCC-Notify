@@ -9,7 +9,7 @@ const Avatar = ({ src, handleChange }) => {
         className="rounded-circle"
       />
       <div className="upload-icon">
-        <button className="btn btn-primary" type="button">
+        <button className="btn main--button" type="button">
           <MdOutlineCameraAlt color="white" size={20} />
         </button>
         <input

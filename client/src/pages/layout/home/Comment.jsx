@@ -5,7 +5,7 @@ import { IoSend } from "react-icons/io5";
 const Comment = () => {
   return (
     <>
-      <h4 className="fw-semibold">Comment</h4>
+      <h5>Comment</h5>
       <hr />
       <div className="d-flex align-items-center ">
         {/* <img

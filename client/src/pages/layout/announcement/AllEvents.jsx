@@ -1,12 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Container from "@Components/container/Container";
-import SectionContainer from "@Components/container/SectionContainer";
 import { fetchEvents } from "@Services/api/fetchEvents";
+import Container from "@Components/container/Container";
 import SelectInput from "@Components/form/SelectInput";
-import HoverButton from "@Components/button/HoverButton";
+import DateFormat from "@Components/container/DateFormat";
+import ContentButton from "@Components/button/ContentButton";
 import Categories from "@Components/container/Categories";
 
 const AllEvents = () => {
+  const navigate = useNavigate();
   const { events, isLoading } = fetchEvents();
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -74,9 +76,13 @@ const AllEvents = () => {
     setSortBy(value);
   };
 
+  const hadleContent = (id) => {
+    navigate(`/content/${id}`);
+  };
+
   return (
     <Container>
-      <SectionContainer>
+      <div className="container mt-5">
         <div className="d-flex align-items-center mb-5">
           <SelectInput
             id="categorySelect"
@@ -114,31 +120,34 @@ const AllEvents = () => {
           />
         </div>
         <div className="row">
-          {filteredEvents.map((event, index) => (
+          {filteredEvents.map((announcement, index) => (
             <div
               className="col-3 card border-0 px-3 announcement__card"
               key={index}
             >
               <div className="position-relative">
                 <img
-                  src={`http://localhost:3000/image/${event.image}`}
+                  src={`http://localhost:3000/image/${announcement.image}`}
                   alt={`Image ${index + 1}`}
                   className="card-img-top"
                 />
                 <div className="card__categories">
-                  <Categories category={event.categories} />
+                  <Categories category={announcement.categories} />
                 </div>
               </div>
               <div className="card-body px-0">
-                <button className="btn p-0 text-start border-0">
-                  <HoverButton>{event.title}</HoverButton>
-                </button>
-                <small>{event.createdAt}</small>
+                <DateFormat
+                  style={"text-black-50"}
+                  date={announcement.createdAt}
+                />
+                <ContentButton onClick={() => hadleContent(announcement._id)}>
+                  <p>{announcement.title}</p>
+                </ContentButton>
               </div>
             </div>
           ))}
         </div>
-      </SectionContainer>
+      </div>
     </Container>
   );
 };

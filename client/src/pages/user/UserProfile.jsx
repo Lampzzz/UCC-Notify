@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { fetchUserDetail } from "@Services/api/fetchUserDetail";
 import { useUpdateProfleMutation } from "@Services/redux/api/userApiSlice";
+import { setCredentials } from "@Services/redux/slice/authSlice";
 import Container from "@Components/container/Container";
 import ProfileButton from "@Components/button/ProfileButton";
 import Input from "@Components/form/Input";
@@ -10,15 +12,19 @@ import TogglePassword from "@Components/form/TogglePassword";
 import ActionButton from "@Components/button/ActionButton";
 
 const UserProfile = () => {
+  const { user, userInfo } = fetchUserDetail();
+
   const initialize = {
+    username: userInfo.username ?? "",
+    email: userInfo.email ?? "",
+    image: "",
     newPassword: "",
     repeatPassword: "",
   };
 
   const dispatch = useDispatch();
-  const { user, setUser } = fetchUserDetail();
+  const [userDetail, setUserDetail] = useState(initialize);
   const [updateUser, { isLoading }] = useUpdateProfleMutation();
-  const [password, setPassword] = useState(initialize);
   const [validationErrors, setValidationErrors] = useState({});
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
@@ -37,11 +43,11 @@ const UserProfile = () => {
             ? "Invalid password format"
             : "";
 
-        if (password.repeatPassword && password.repeatPassword !== value) {
+        if (userDetail.repeatPassword && userDetail.repeatPassword !== value) {
           errors.repeatPassword = "Password does not match";
         }
 
-        if (password.repeatPassword && password.repeatPassword == value) {
+        if (userDetail.repeatPassword && userDetail.repeatPassword == value) {
           errors.repeatPassword = "";
         }
         break;
@@ -50,7 +56,7 @@ const UserProfile = () => {
         errors.repeatPassword =
           value.trim() === ""
             ? "Repeat Password is required"
-            : value !== password.newPassword
+            : value !== userDetail.newPassword
             ? "Password does not match"
             : "";
         break;
@@ -67,9 +73,9 @@ const UserProfile = () => {
 
   const handleChange = (e) => {
     if (e.target.name === "image") {
-      setUser({ ...user, image: e.target.files[0] });
+      setUserDetail({ ...userDetail, image: e.target.files[0] });
     } else {
-      setUser({ ...user, [e.target.name]: e.target.value });
+      setUserDetail({ ...userDetail, [e.target.name]: e.target.value });
     }
 
     validateField(e.target.name, e.target.value);
@@ -88,17 +94,26 @@ const UserProfile = () => {
 
     try {
       const formData = new FormData();
-      formData.append("firstName", user.firstName);
-      formData.append("lastName", user.lastName);
-      formData.append("middleName", user.middleName);
-      formData.append("email", user.email);
-      formData.append("avatar", user.image);
+      formData.append("firstName", userDetail.username);
+      formData.append("avatar", userDetail.image);
+      formData.append("newPassword", userDetail.newPassword);
+      formData.append("repeatPassword", userDetail.repeatPassword);
 
       const response = await updateUser(formData).unwrap();
       dispatch(setCredentials(response));
+      setUserDetail(initialize);
       toast.success("User Updated Successfully.");
     } catch (err) {
-      toast.error(err.data.errorMessage);
+      const responseError = err.data;
+      if (responseError && responseError.errors) {
+        const serverErrors = responseError.errors.reduce((acc, curr) => {
+          acc[curr.field] = curr.message;
+          return acc;
+        }, {});
+        setValidationErrors(serverErrors);
+      } else {
+        console.error("Unexpected error:", err);
+      }
     }
   };
 
@@ -129,8 +144,8 @@ const UserProfile = () => {
             <form onSubmit={handleSubmit}>
               <Avatar
                 src={
-                  user.image
-                    ? URL.createObjectURL(user.image)
+                  userDetail.image
+                    ? URL.createObjectURL(userDetail.image)
                     : `http://localhost:3000/image/${user.avatar}`
                 }
                 handleChange={handleChange}
@@ -144,7 +159,7 @@ const UserProfile = () => {
                     type={"text"}
                     name={"username"}
                     style={validationErrors.username ? "error" : ""}
-                    value={user.username}
+                    value={userDetail.username}
                     handleChange={handleChange}
                     handleBlur={handleBlur}
                   />
@@ -164,7 +179,7 @@ const UserProfile = () => {
                     className="form-control"
                     name="email"
                     disabled
-                    value={user.email}
+                    value={userDetail.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -177,7 +192,7 @@ const UserProfile = () => {
                     type={showNewPassword ? "text" : "password"}
                     name={"newPassword"}
                     style={validationErrors.newPassword ? "error" : ""}
-                    value={password.newPassword}
+                    value={userDetail.newPassword}
                     handleChange={handleChange}
                     handleBlur={handleBlur}
                   />
@@ -203,7 +218,7 @@ const UserProfile = () => {
                     type={showRepeatPassword ? "text" : "password"}
                     name={"repeatPassword"}
                     style={validationErrors.repeatPassword ? "error" : ""}
-                    value={password.repeatPassword}
+                    value={userDetail.repeatPassword}
                     handleChange={handleChange}
                     handleBlur={handleBlur}
                   />

@@ -134,7 +134,7 @@ const Login = () => {
           <span className="text-black-50">Forgot password?</span>
         </div>
         <ActionButton
-          style={"btn btn-primary mt-4 mb-3 w-100 border-0"}
+          style={"btn btn-primary mt-4 mb-3 w-100 border-0 main--button"}
           type={"submit"}
           label={"Login"}
           isLoading={isLoading}

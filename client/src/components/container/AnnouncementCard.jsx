@@ -4,7 +4,7 @@ import Categories from "@Components/container/Categories";
 
 const AnnouncementCard = ({ announcement, index, handleClick }) => {
   return (
-    <div className="card border-0 px-3 announcement__card" key={index}>
+    <div className="card border-0 px-2 announcement__card" key={index}>
       <div className="position-relative">
         <img
           src={`http://localhost:3000/image/${announcement.image}`}

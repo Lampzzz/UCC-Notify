@@ -5,7 +5,8 @@ import ContentButton from "@Components/button/ContentButton";
 import { fetchAllAnnouncement } from "@Services/api/fetchAllAnnouncement";
 import Categories from "@Components/container/Categories";
 import Slick from "@Components/slick/Slick";
-import SectionContainer from "@Components/container/SectionContainer";
+import LoadingSkeleton from "@Components/loading/LoadingSkeleton";
+import AnnouncementCard from "@Components/container/AnnouncementCard";
 import TitleContainer from "@Components/container/TitleContainer";
 
 const Popular = () => {
@@ -65,34 +66,15 @@ const Popular = () => {
           </div>
         </div>
         {isLoading ? (
-          <p>Loading...</p>
+          <LoadingSkeleton />
         ) : (
           <Slick data={filteredAnnouncements} no={4} dots={true} col={"col-3"}>
             {filteredAnnouncements.map((announcement, index) => (
-              <div
-                className="card border-0 px-3 announcement__card"
-                key={index}
-              >
-                <div className="position-relative">
-                  <img
-                    src={`http://localhost:3000/image/${announcement.image}`}
-                    alt={`Image ${index + 1}`}
-                    className="card-img-top"
-                  />
-                  <div className="card__categories">
-                    <Categories category={announcement.categories} />
-                  </div>
-                </div>
-                <div className="card-body px-0">
-                  <DateFormat
-                    style={"text-black-50"}
-                    date={announcement.createdAt}
-                  />
-                  <ContentButton onClick={() => hadleContent(announcement._id)}>
-                    <p>{announcement.title}</p>
-                  </ContentButton>
-                </div>
-              </div>
+              <AnnouncementCard
+                index={announcement._id}
+                announcement={announcement}
+                handleClick={() => hadleContent(announcement._id)}
+              />
             ))}
           </Slick>
         )}

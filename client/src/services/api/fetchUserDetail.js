@@ -3,12 +3,7 @@ import { useSelector } from "react-redux";
 
 export const fetchUserDetail = () => {
   const { userInfo } = useSelector((state) => state.auth);
-  const [user, setUser] = useState({
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    email: "",
-  });
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     if (userInfo) {

@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { GoPerson } from "react-icons/go";
+import { fetchUserDetail } from "@Services/api/fetchUserDetail";
 import NavbarLink from "./NavbarLink";
 import LinkButton from "../button/LinkButton";
 import AuthModal from "../modal/AuthModal";
 import Login from "../../pages/auth/Login";
 import Register from "../../pages/auth/Register";
-import { fetchUserDetail } from "@Services/api/fetchUserDetail";
 import AvatarLink from "./AvatarLink";
 
 const Navbar = () => {
@@ -55,7 +55,7 @@ const Navbar = () => {
                       <CiSearch size={30} />
                     </button>
                   </Link>
-                  {userInfo || user ? (
+                  {userInfo ? (
                     <div className="dropdown">
                       <div
                         className="btn-group"

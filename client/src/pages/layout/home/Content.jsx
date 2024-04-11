@@ -1,28 +1,50 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa6";
+import { fetchUserDetail } from "@Services/api/fetchUserDetail";
 import { useGetAnnouncementQuery } from "@Services/redux/api/announcementApiSlice";
 import Container from "@Components/container/Container";
-import SectionContainer from "@Components/container/SectionContainer";
 import Trending from "@Components/container/Trending";
+import RequiredModal from "@Components/modal/RequiredModal";
 import TrendingActicle from "./TrendingActicle";
 import Comment from "./Comment";
-import Popular from "./Popular";
 
 const Content = () => {
   const { id } = useParams();
-  const { data, refetch, isLoading } = useGetAnnouncementQuery(id);
+  const { data, isLoading } = useGetAnnouncementQuery(id);
+  const { user } = fetchUserDetail();
+  const [bookmark, setBookmark] = useState(false);
+  const [bookmarkIcon, setBookmarkIcon] = useState(<FaRegBookmark size={30} />);
   const [announcement, setAnnouncement] = useState();
+  const [showModal, setShowModal] = useState(false);
 
+  // Get the announcement
   useEffect(() => {
     if (data) {
       setAnnouncement(data);
     }
   }, [data]);
 
+  const handleBookmark = () => {
+    if (user) {
+      setBookmark(!bookmark);
+      setBookmarkIcon(
+        bookmark ? <FaRegBookmark size={30} /> : <FaBookmark size={30} />
+      );
+      if (bookmark) {
+        toast.error("Bookmark Removed");
+      } else {
+        toast.success("Bookmark Added");
+      }
+    } else {
+      setShowModal(true);
+    }
+  };
+
   return (
     <Container>
-      <SectionContainer>
+      <div className="container mt-5">
         <Trending />
         {isLoading ? (
           <div>Loading...</div>
@@ -39,7 +61,12 @@ const Content = () => {
                         alt={announcement.title}
                       />
                       <div className="bookmark__icon">
-                        <FaRegBookmark size={30} color="#" />
+                        <button
+                          className="btn main--color border-0 "
+                          onClick={handleBookmark}
+                        >
+                          {bookmarkIcon}
+                        </button>
                       </div>
                     </div>
                     <h4 className="fw-semibold mt-4 mb-3">
@@ -54,10 +81,10 @@ const Content = () => {
                 <Comment />
               </div>
             </div>
-            {/* <Popular /> */}
           </>
         )}
-      </SectionContainer>
+      </div>
+      {showModal && <RequiredModal id="loginRequiredModal" />}
     </Container>
   );
 };
