@@ -3,7 +3,6 @@ import { CiSearch } from "react-icons/ci";
 import { GoPerson } from "react-icons/go";
 import { fetchUserDetail } from "@Services/api/fetchUserDetail";
 import NavbarLink from "./NavbarLink";
-import LinkButton from "../button/LinkButton";
 import AuthModal from "../modal/AuthModal";
 import Login from "../../pages/auth/Login";
 import Register from "../../pages/auth/Register";
@@ -72,9 +71,13 @@ const Navbar = () => {
                       <AvatarLink to="/user/profile" />
                     </div>
                   ) : (
-                    <LinkButton>
+                    <button
+                      className="btn border-0"
+                      data-bs-toggle="modal"
+                      data-bs-target="#login"
+                    >
                       <GoPerson size={30} />
-                    </LinkButton>
+                    </button>
                   )}
                 </div>
               </div>
