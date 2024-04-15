@@ -1,0 +1,20 @@
+button:active {
+  color: var(--main--color) !important;
+}
+
+.main--button {
+  color: #fff;
+  background-color: var(--main--color);
+  transition: var(--transition);
+  border: 1px solid var(--main--color) !important;
+}
+
+.main--button:hover {
+  background-color: transparent;
+  color: var(--main--color);
+}
+
+.main--button:active {
+  background-color: transparent !important;
+  color: var(--main--color) !important;
+}

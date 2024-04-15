@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const bookmarkSchema = mongoose.Schema({
+const commentSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -13,6 +13,11 @@ const bookmarkSchema = mongoose.Schema({
     required: true,
   },
 
+  comment: {
+    type: String,
+    required: true,
+  },
+
   createdAt: {
     type: String,
     default: new Date(),
@@ -20,6 +25,6 @@ const bookmarkSchema = mongoose.Schema({
   },
 });
 
-const Bookmark = mongoose.model("Bookmark", bookmarkSchema);
+const Comment = mongoose.model("Comment", commentSchema);
 
-export default Bookmark;
+export default Comment;

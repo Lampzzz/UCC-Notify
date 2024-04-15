@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 const PrivateRoute = () => {
   const { userInfo } = useSelector((state) => state.auth);
-  return userInfo && userInfo.role == "Super Admin" ? (
+  return userInfo && userInfo.role == "User" ? (
     <Outlet />
   ) : (
     <Navigate to="/" replace />

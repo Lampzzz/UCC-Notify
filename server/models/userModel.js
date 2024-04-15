@@ -31,7 +31,7 @@ const userSchema = mongoose.Schema({
   role: { type: String, default: "User" },
 
   createdAt: {
-    type: Date,
+    type: String,
     default: new Date(),
     required: true,
   },

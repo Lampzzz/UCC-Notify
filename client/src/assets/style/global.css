@@ -164,19 +164,6 @@ body {
   color: var(--main--color);
 }
 
-/* Main Button */
-.main--button {
-  color: #fff;
-  background-color: var(--main--color);
-  transition: var(--transition);
-  border: 1px solid var(--main--color) !important;
-}
-
-.main--button:hover {
-  background-color: transparent;
-  color: var(--main--color);
-}
-
 /* Search */
 .search__icon {
   position: absolute;

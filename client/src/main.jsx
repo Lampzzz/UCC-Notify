@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "../src/assets/style/global.css";
 import "../src/assets/style/auth.css";
+import "../src/assets/style/button.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
