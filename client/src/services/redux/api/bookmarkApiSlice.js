@@ -3,16 +3,9 @@ import { apiSlice } from "./apiSlice";
 
 export const bookmarkApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    deleteBookmark: builder.mutation({
-      query: ({ userID, announcementID }) => ({
-        url: `${BOOKMARK_URL}/remove/${userID}/${announcementID}`,
-        method: "DELETE",
-      }),
-    }),
-
-    addBookmark: builder.mutation({
+    toggleBookmark: builder.mutation({
       query: (data) => ({
-        url: `${BOOKMARK_URL}/add`,
+        url: `${BOOKMARK_URL}/toggle`,
         method: "POST",
         body: data,
       }),
@@ -24,11 +17,18 @@ export const bookmarkApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+
+    getBookmark: builder.query({
+      query: (userID) => ({
+        url: `${BOOKMARK_URL}/get/${userID}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
 export const {
-  useAddBookmarkMutation,
-  useDeleteBookmarkMutation,
+  useToggleBookmarkMutation,
   useExistBookmarkQuery,
+  useGetBookmarkQuery,
 } = bookmarkApiSlice;

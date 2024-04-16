@@ -55,7 +55,7 @@ const Navbar = () => {
                     </button>
                   </Link>
                   {userInfo ? (
-                    <div className="dropdown">
+                    <div className="dropdown navbar__dropdown">
                       <div
                         className="btn-group"
                         data-bs-toggle="dropdown"

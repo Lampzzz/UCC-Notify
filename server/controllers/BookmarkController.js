@@ -1,31 +1,30 @@
 import Bookmark from "../models/bookmarkModel.js";
 import errorHandler from "../utils/errorHandler.js";
 
-export const addBookmark = async (req, res) => {
+export const toggleBookmark = async (req, res) => {
   const { userID, announcementID } = req.body;
 
   try {
-    const newBookmark = await Bookmark.create({
+    const bookmarkExist = await Bookmark.findOne({
       user: userID,
       announcement: announcementID,
     });
 
-    res.status(200).send(newBookmark);
-  } catch (err) {
-    errorHandler(res, err);
-  }
-};
+    if (bookmarkExist) {
+      await Bookmark.findOneAndDelete({
+        user: userID,
+        announcement: announcementID,
+      });
 
-export const removeBookmark = async (req, res) => {
-  const { userID, announcementID } = req.params;
+      return res.send({ isBookmark: false });
+    }
 
-  try {
-    await Bookmark.findOneAndDelete({
+    await Bookmark.create({
       user: userID,
       announcement: announcementID,
     });
 
-    res.status(200).send("Delete Successfully");
+    res.status(200).send({ isBookmark: true });
   } catch (err) {
     errorHandler(res, err);
   }

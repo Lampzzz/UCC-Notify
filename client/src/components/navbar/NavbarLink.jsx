@@ -6,7 +6,7 @@ const NavbarLink = ({ link, label, dropdownItems }) => {
   return (
     <li className="nav-item py-1 py-lg-0">
       {dropdownItems ? (
-        <div className="dropdown">
+        <div className="dropdown navbar__dropdown">
           <Link
             to={link}
             className={`nav-link dropdown-toggle ${

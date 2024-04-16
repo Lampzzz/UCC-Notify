@@ -23,24 +23,16 @@ const AvatarLink = ({ to }) => {
   };
 
   return (
-    <ul
-      className="dropdown-menu dropdown-menu-end mt-3"
-      aria-labelledby="userDropdown"
-    >
+    <ul className="dropdown-menu dropdown__menu" aria-labelledby="userDropdown">
       <li>
         <Link to={to} className="text-decoration-none">
-          <button className="dropdown-item d-flex align-items-center">
-            <LuUser2 className="me-2" />
+          <button className="dropdown-item">
             <p className="mb-0">Profile</p>
           </button>
         </Link>
       </li>
       <li>
-        <button
-          onClick={handleLogout}
-          className="dropdown-item d-flex align-items-center"
-        >
-          <LuLogOut className="me-2" />
+        <button onClick={handleLogout} className="dropdown-item">
           <p className="mb-0">Logout</p>
         </button>
       </li>

@@ -1,0 +1,8 @@
+.navbar__dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item:hover {
+  background-color: var(--main--color);
+  color: #fff;
+}

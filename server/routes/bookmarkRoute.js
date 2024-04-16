@@ -1,8 +1,7 @@
 import express from "express";
 import { authenticate } from "../middleware/authMiddleware.js";
 import {
-  addBookmark,
-  removeBookmark,
+  toggleBookmark,
   checkBookmark,
   getBookmarkByUserID,
 } from "../controllers/bookmarkController.js";
@@ -10,8 +9,7 @@ import {
 const router = express.Router();
 
 router
-  .post("/add", authenticate, addBookmark)
-  .delete("/remove/:userID/:announcementID", authenticate, removeBookmark)
+  .post("/toggle", authenticate, toggleBookmark)
   .get("/check/:userID/:announcementID", authenticate, checkBookmark)
   .get("/get/:userID", authenticate, getBookmarkByUserID);
 

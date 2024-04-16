@@ -111,25 +111,6 @@ body {
   background-color: #100f0f;
 }
 
-/* Navbar */
-/* .dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu {
-  position: relative;
-}
-
-.dropdown-menu:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: "";
-  background-color: var(--main--color);
-  height: 3px;
-  width: 100%;
-} */
-
 /* Title Link */
 .link__content {
   transition: var(--transition);

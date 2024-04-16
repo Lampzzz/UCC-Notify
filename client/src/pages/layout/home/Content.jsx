@@ -11,48 +11,46 @@ import RequiredModal from "@Components/modal/RequiredModal";
 import OpenModalButton from "@Components/button/OpenModalButton";
 import TrendingActicle from "./TrendingActicle";
 import Comment from "./Comment";
-import {
-  useAddBookmarkMutation,
-  useDeleteBookmarkMutation,
-} from "@Services/redux/api/bookmarkApiSlice";
+import { useToggleBookmarkMutation } from "@Services/redux/api/bookmarkApiSlice";
 
 const Content = () => {
   const { id } = useParams();
   const { userInfo } = fetchUserDetail();
   const { announcement, isLoading } = fetchCurrentAnnouncement(id);
-  const { isExist } = fetchExistBookmark(userInfo._id, id);
-  const [addBookmark] = useAddBookmarkMutation();
-  const [deleteBookmark] = useDeleteBookmarkMutation();
+  const { isExist } = fetchExistBookmark(userInfo ? userInfo._id : "", id);
+  const [toggleBookmark] = useToggleBookmarkMutation();
   const [isBookmark, setIsBookmark] = useState(false);
   const [bookmarkIcon, setBookmarkIcon] = useState(<FaRegBookmark size={30} />);
 
   useEffect(() => {
+    setIsBookmark(isExist);
     setBookmarkIcon(
       isExist ? <FaBookmark size={30} /> : <FaRegBookmark size={30} />
     );
-    setIsBookmark(isExist);
   }, [isExist]);
 
   // Bookmark the announcement
   const handleBookmark = async (announcementID) => {
-    const userID = userInfo._id;
-
-    setBookmarkIcon(
-      isBookmark ? <FaRegBookmark size={30} /> : <FaBookmark size={30} />
-    );
+    const userID = userInfo ? userInfo._id : null;
 
     try {
-      if (isBookmark) {
-        await deleteBookmark({ userID, announcementID }).unwrap();
-        setIsBookmark(false);
-      } else {
-        await addBookmark({ userID, announcementID }).unwrap();
-        toast.success("Bookmark Added");
+      const response = await toggleBookmark({
+        userID,
+        announcementID,
+      }).unwrap();
+
+      if (response.isBookmark) {
         setIsBookmark(true);
+        setBookmarkIcon(<FaBookmark size={30} />);
+        toast("Bookmark Added");
+      } else {
+        setIsBookmark(false);
+        setBookmarkIcon(<FaRegBookmark size={30} />);
+        toast("Bookmark Removed");
       }
     } catch (err) {
       console.error("Error Message: ", err.message);
-      toast.error("Bookmark Removed");
+      toast.error("Operation failed");
     }
   };
 
@@ -80,7 +78,7 @@ const Content = () => {
                             className="btn main--color border-0 "
                             onClick={() => handleBookmark(announcement._id)}
                           >
-                            {bookmarkIcon}
+                            {!isLoading && bookmarkIcon}
                           </button>
                         ) : (
                           <OpenModalButton
