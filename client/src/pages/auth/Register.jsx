@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import ActionButton from "../../components/button/ActionButton";
 import Input from "../../components/form/Input";
@@ -23,6 +23,24 @@ const Register = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [auth, setAuth] = useState(initialize);
   const [validationErrors, setValidationErrors] = useState({});
+
+  useEffect(() => {
+    const modalElement = document.getElementById("register");
+    const handleModalHide = () => {
+      setAuth(initialize);
+      setValidationErrors({});
+    };
+
+    if (modalElement) {
+      modalElement.addEventListener("hidden.bs.modal", handleModalHide);
+    }
+
+    return () => {
+      if (modalElement) {
+        modalElement.removeEventListener("hidden.bs.modal", handleModalHide);
+      }
+    };
+  }, []);
 
   const validateField = (fieldName, value) => {
     let errors = { ...validationErrors };
@@ -203,10 +221,12 @@ const Register = () => {
         <p className="text-center text-black-50">
           Already have an account?
           <span
-            className="ms-1 text-decoration-underline "
-            style={{ color: "#F7770F" }}
+            className="ms-1 text-decoration-underline"
+            style={{ color: "#F7770F", cursor: "pointer" }}
+            data-bs-toggle="modal"
+            data-bs-target="#login"
           >
-            Sign in
+            Sign up
           </span>
         </p>
       </form>

@@ -24,7 +24,7 @@ const UpcomingEvents = () => {
   };
 
   return (
-    <div className="container py-5">
+    <div className="container" id="section">
       <div className="d-flex justify-content-between mb-3">
         <TitleContainer>Upcoming / Ongoing Events</TitleContainer>
         {events.length > 4 && <p className="mb-0">see more</p>}

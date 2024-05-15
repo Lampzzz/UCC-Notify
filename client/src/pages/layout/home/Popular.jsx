@@ -48,7 +48,7 @@ const Popular = () => {
 
   return (
     <>
-      <div className="container py-5">
+      <div className="container" id="section">
         <div className="d-flex align-items-center mb-4">
           <TitleContainer>Most Popular</TitleContainer>
           <div className="d-flex ms-5">
@@ -71,6 +71,7 @@ const Popular = () => {
           <Slick data={filteredAnnouncements} no={4} dots={true} col={"col-3"}>
             {filteredAnnouncements.map((announcement, index) => (
               <AnnouncementCard
+                key={index}
                 index={announcement._id}
                 announcement={announcement}
                 handleClick={() => hadleContent(announcement._id)}

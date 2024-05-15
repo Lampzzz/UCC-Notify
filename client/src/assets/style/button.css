@@ -15,6 +15,6 @@ button:active {
 }
 
 .main--button:active {
-  background-color: transparent !important;
+  background-color: none !important;
   color: var(--main--color) !important;
 }

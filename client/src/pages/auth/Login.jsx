@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLoginMutation } from "../../services/redux/api/authApiSlice";
 import { setCredentials } from "../../services/redux/slice/authSlice";
@@ -22,6 +22,25 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [validationErrors, setValidationErrors] = useState({});
   const [message, setMessage] = useState();
+
+  useEffect(() => {
+    const modalElement = document.getElementById("login");
+    const handleModalHide = () => {
+      setAuth(initialize);
+      setValidationErrors({});
+      setMessage(null);
+    };
+
+    if (modalElement) {
+      modalElement.addEventListener("hidden.bs.modal", handleModalHide);
+    }
+
+    return () => {
+      if (modalElement) {
+        modalElement.removeEventListener("hidden.bs.modal", handleModalHide);
+      }
+    };
+  }, []);
 
   const validateField = (fieldName, value) => {
     let errors = { ...validationErrors };
@@ -143,7 +162,7 @@ const Login = () => {
         <p className="text-center text-black-50">
           Don't have an account?
           <span
-            className="ms-1 text-decoration-underline "
+            className="ms-1 text-decoration-underline"
             style={{ color: "#F7770F", cursor: "pointer" }}
             data-bs-toggle="modal"
             data-bs-target="#register"

@@ -14,7 +14,7 @@ const LatestNews = () => {
   };
 
   return (
-    <div className="container py-5">
+    <div className="container" id="section">
       <div className="d-flex justify-content-between mb-3">
         <TitleContainer>Latest News</TitleContainer>
         {news.length > 4 && <p className="mb-0">see more</p>}
@@ -25,6 +25,7 @@ const LatestNews = () => {
         <Slick data={news} no={4}>
           {news.map((announcement, index) => (
             <AnnouncementCard
+              key={index}
               index={announcement._id}
               announcement={announcement}
               handleClick={() => hadleContent(announcement._id)}

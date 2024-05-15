@@ -28,15 +28,15 @@ export const removeComment = async (req, res) => {
   }
 };
 
-export const showComment = async (req, res) => {
+export const getComment = async (req, res) => {
   const { announcementID } = req.params;
 
   try {
-    const comment = await Comment.find({
+    const comment = await Comment.findById({
       announcement: announcementID,
     }).populate("user");
 
-    res.status(200).send(comment);
+    res.status(200).json(comment);
   } catch (err) {
     errorHandler(res, err);
   }

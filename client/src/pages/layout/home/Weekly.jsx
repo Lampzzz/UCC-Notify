@@ -11,7 +11,7 @@ const Weekly = () => {
 
   return (
     <>
-      <div className="container-fluid bg-light py-5">
+      <div className="container-fluid bg-light" id="section">
         <div className="container">
           <div className="d-flex justify-content-between mb-3">
             <TitleContainer>Weekly Top News</TitleContainer>
@@ -22,7 +22,7 @@ const Weekly = () => {
           ) : (
             <Slick data={news} no={3}>
               {news.map((announcement, index) => (
-                <div className="announcement__container px-2" key={index}>
+                <div className="announcement__container px-1" key={index}>
                   <img
                     src={`http://localhost:3000/image/${announcement.image}`}
                     alt={`Image ${index + 1}`}
