@@ -11,7 +11,7 @@ export const addComment = async (req, res) => {
       comment,
     });
 
-    res.status(200).send(newComment);
+    res.status(200).json(newComment);
   } catch (err) {
     errorHandler(res, err);
   }
@@ -22,7 +22,7 @@ export const removeComment = async (req, res) => {
 
   try {
     await Comment.findByIdAndDelete(userID);
-    res.status(200).send();
+    res.status(200).json();
   } catch (err) {
     errorHandler(res, err);
   }
@@ -32,11 +32,26 @@ export const getComment = async (req, res) => {
   const { announcementID } = req.params;
 
   try {
-    const comment = await Comment.findById({
+    const comment = await Comment.find({
       announcement: announcementID,
     }).populate("user");
 
     res.status(200).json(comment);
+  } catch (err) {
+    errorHandler(res, err);
+  }
+};
+
+export const deleteComment = async (req, res) => {
+  try {
+    const { userID, announcementID } = req.params;
+
+    await Comment.findOneAndDelete({
+      user: userID,
+      announcement: announcementID,
+    });
+
+    res.status(200).send("Delete Succesfully");
   } catch (err) {
     errorHandler(res, err);
   }

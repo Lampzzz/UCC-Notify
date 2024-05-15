@@ -17,8 +17,18 @@ export const bookmarkApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+
+    deleteComment: builder.mutation({
+      query: ({ userID, announcementID }) => ({
+        url: `${COMMENT_URL}/delete/${userID}/${announcementID}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
-export const { useCreateCommentMutation, useGetCommentQuery } =
-  bookmarkApiSlice;
+export const {
+  useCreateCommentMutation,
+  useGetCommentQuery,
+  useDeleteCommentMutation,
+} = bookmarkApiSlice;
