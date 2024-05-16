@@ -98,11 +98,12 @@ const Content = () => {
                 )}
               </div>
               <div className="col-12 col-md-4">
-                <TrendingActicle />
                 <Comment
                   userID={userInfo ? userInfo._id : null}
                   announcementID={announcement._id}
                 />
+                <div className="mb-5"></div>
+                <TrendingActicle />
               </div>
             </div>
           </>

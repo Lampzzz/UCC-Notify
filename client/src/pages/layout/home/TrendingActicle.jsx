@@ -7,7 +7,7 @@ const TrendingActicle = () => {
   const mostPopular = announcements.slice(0, 3);
 
   return (
-    <div className="mb-5 pb-5">
+    <>
       <h5>Trending</h5>
       <hr />
       {mostPopular.map((announcement, index) => (
@@ -27,7 +27,7 @@ const TrendingActicle = () => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

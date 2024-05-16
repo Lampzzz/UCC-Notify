@@ -22,6 +22,17 @@ body {
   --transition: all 0.2s linear !important;
 }
 
+/* Scroll bar */
+.comment__container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.comment__container::-webkit-scrollbar-thumb {
+  background: #f7770f;
+  border-radius: 6px;
+}
+
+/* Color */
 .main--color {
   color: var(--main--color) !important;
 }
@@ -185,4 +196,10 @@ body {
   top: 3%;
   left: 2%;
   color: var(--main--color);
+}
+
+/* Comment */
+.comment__container {
+  max-height: 300px;
+  overflow-y: auto;
 }

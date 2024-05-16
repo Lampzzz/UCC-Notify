@@ -55,6 +55,7 @@ export const getAnnouncement = async (req, res) => {
 
   try {
     const announcement = await Announcement.findById(announcementID);
+
     if (!announcement) {
       throw new Error(" announcement not found");
     }

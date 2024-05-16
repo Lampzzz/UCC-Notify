@@ -19,7 +19,7 @@ const RequiredModal = () => {
           <div className="modal-footer border-0 ">
             <button
               type="button"
-              class="btn border-0 text-black"
+              className="btn border-0 text-black"
               data-bs-dismiss="modal"
             >
               Close

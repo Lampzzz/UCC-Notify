@@ -34,7 +34,9 @@ export const getComment = async (req, res) => {
   try {
     const comment = await Comment.find({
       announcement: announcementID,
-    }).populate("user");
+    })
+      .populate("user")
+      .sort({ createdAt: -1 });
 
     res.status(200).json(comment);
   } catch (err) {
