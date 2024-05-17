@@ -7,6 +7,7 @@ import AuthModal from "../modal/AuthModal";
 import Login from "../../pages/auth/Login";
 import Register from "../../pages/auth/Register";
 import AvatarLink from "./AvatarLink";
+import logo from "../../assets/image/logo__black.png";
 
 const Navbar = () => {
   const { userInfo, user } = fetchUserDetail();

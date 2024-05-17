@@ -57,10 +57,44 @@ export const getAnnouncement = async (req, res) => {
     const announcement = await Announcement.findById(announcementID);
 
     if (!announcement) {
-      throw new Error(" announcement not found");
+      throw new Error("Announcement not found");
     }
 
     res.status(200).json(announcement);
+  } catch (err) {
+    errorHandler(res, err);
+  }
+};
+
+export const updateAnnouncement = async (req, res) => {
+  const { announcementID } = req.params;
+
+  try {
+    const { title, content, types, categories, author } = req.body;
+
+    const announcement = await Announcement.findById(announcementID);
+
+    announcement.image = req.file ? req.file.filename : announcement.image;
+    announcement.title = title || announcement.title;
+    announcement.content = content || announcement.content;
+    announcement.types = types || announcement.types;
+    announcement.categories = categories || announcement.categories;
+    announcement.author = author || announcement.author;
+
+    const updatedAnnouncement = await announcement.save();
+
+    res.status(200).json(updatedAnnouncement);
+  } catch (err) {
+    errorHandler(res, err);
+  }
+};
+
+export const deleteAnnouncement = async (req, res) => {
+  const { announcementID } = req.params;
+
+  try {
+    await Announcement.findByIdAndDelete(announcementID);
+    res.status(200).json("Delete Successfully");
   } catch (err) {
     errorHandler(res, err);
   }

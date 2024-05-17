@@ -26,8 +26,8 @@ const getCurrentUser = async (req, res) => {
 const updateUserProfile = async (req, res) => {
   const user = await User.findById(req.user._id);
   const { username, newPassword, repeatPassword } = req.body;
-  const errors = [];
   const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])(?=.{8,20})/;
+  const errors = [];
 
   try {
     if (!user) {
@@ -63,10 +63,12 @@ const updateUserProfile = async (req, res) => {
       return;
     }
 
+    const passwordHash = await bcrypt.hash(newPassword, 10);
+
     user.username = username || user.username;
     user.email = req.body.email || user.email;
     user.avatar = req.file ? req.file.filename : user.avatar;
-    user.passwordHash = newPassword || user.passwordHash
+    user.passwordHash = passwordHash || user.passwordHash;
 
     const updateUser = await user.save();
 
