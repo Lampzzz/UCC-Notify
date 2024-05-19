@@ -1,7 +1,7 @@
 import Student from "../models/studentModel.js";
 import errorHandler from "../utils/errorHandler.js";
 
-export const studenRegistration = async (req, res) => {
+export const studentRegistration = async (req, res) => {
   try {
     const {
       studentNo,
@@ -99,7 +99,7 @@ export const studenRegistration = async (req, res) => {
   }
 };
 
-export const updateStudent = async (req, res) => {
+export const editStudent = async (req, res) => {
   const student = await Student.findById(req.params.id);
   const {
     studentNo,
@@ -124,6 +124,22 @@ export const updateStudent = async (req, res) => {
     student.section = section || student.section;
     student.course = course || student.course;
     student.phoneNo = phoneNo || student.phoneNo;
+
+    const updatedStudent = await student.save();
+
+    res.status(200).json(updatedStudent);
+  } catch (err) {
+    errorHandler(res, err);
+  }
+};
+
+export const deleteStudent = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await Student.findByIdAndDelete(id);
+
+    res.status(200).send("Delete Successfully");
   } catch (err) {
     errorHandler(res, err);
   }

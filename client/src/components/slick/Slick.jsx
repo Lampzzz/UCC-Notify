@@ -2,33 +2,35 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-export const Slick = ({ data, no, dots, children }) => {
+export const Slick = ({ no, children }) => {
+  const slidesToShow = Math.min(no, 4);
+
   const settings = {
-    infinite: data.length > 3 ? true : false,
-    speed: 500,
-    dots,
     slidesToShow: no,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    cssEase: "linear",
     responsive: [
       {
         breakpoint: 992,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: Math.min(slidesToShow, 3),
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: Math.min(slidesToShow, 2),
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: Math.min(slidesToShow, 2),
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: Math.min(slidesToShow, 1),
         },
       },
     ],

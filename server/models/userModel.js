@@ -11,16 +11,6 @@ const userSchema = mongoose.Schema({
     required: true,
   },
 
-  firstName: {
-    type: String,
-    required: true,
-  },
-
-  lastName: {
-    type: String,
-    required: true,
-  },
-
   passwordHash: {
     type: String,
     required: true,

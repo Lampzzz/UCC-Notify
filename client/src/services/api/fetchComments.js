@@ -5,8 +5,6 @@ export const fetchComments = (announcementID) => {
   const { data, refetch, isLoading } = useGetCommentQuery(announcementID);
   const [comments, setComments] = useState([]);
 
-  // console.log(comments);
-
   useEffect(() => {
     if (data) {
       setComments(data);

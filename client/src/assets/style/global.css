@@ -41,11 +41,6 @@ body {
   background-color: var(--main--color) !important;
 }
 
-#section {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-
 /* Header */
 .header__img {
   height: 600px;

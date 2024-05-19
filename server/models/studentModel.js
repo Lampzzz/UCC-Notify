@@ -41,7 +41,7 @@ const studentSchema = mongoose.Schema({
   },
 
   phoneNo: {
-    type: Numbeer,
+    type: String,
     required: true,
   },
 

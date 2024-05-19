@@ -11,7 +11,11 @@ const About = () => {
       <Container>
         <div className="container py-5">
           <div className="row align-items-center ">
-            <div className="col-6">
+            <div
+              className="col-6"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+            >
               <img src={uccImage} alt="ucc" className="img-fluid" />
             </div>
             <div className="col-6">
@@ -38,12 +42,20 @@ const About = () => {
                 school a thriving hub of learning and collaboration.
               </AboutContent>
             </div>
-            <div className="col-6">
+            <div
+              className="col-6"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+            >
               <img src={mission} alt="" className="img-fluid" />
             </div>
           </div>
           <div className="row align-items-center ">
-            <div className="col-6">
+            <div
+              className="col-6"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+            >
               <img src={vision} alt="" className="img-fluid" />
             </div>
             <div className="col-6">

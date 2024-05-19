@@ -5,8 +5,6 @@ export const fetchAllAnnouncement = () => {
   const { data, refetch, isLoading } = useGetAllAnnouncementQuery();
   const [announcements, setAnnouncements] = useState([]);
 
-  // console.log(data);
-
   useEffect(() => {
     refetch();
     if (data) {

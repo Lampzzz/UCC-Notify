@@ -2,9 +2,9 @@ import DateFormat from "@Components/container/DateFormat";
 import ContentButton from "@Components/button/ContentButton";
 import Categories from "@Components/container/Categories";
 
-const AnnouncementCard = ({ announcement, index, handleClick }) => {
+const AnnouncementCard = ({ announcement, handleClick }) => {
   return (
-    <div className="card border-0 px-2 announcement__card" key={index}>
+    <div className="card border-0 announcement__card">
       <div className="position-relative">
         <img
           src={`http://localhost:3000/image/${announcement.image}`}

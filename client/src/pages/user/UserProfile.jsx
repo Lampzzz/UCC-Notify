@@ -94,7 +94,7 @@ const UserProfile = () => {
 
     try {
       const formData = new FormData();
-      formData.append("firstName", userDetail.username);
+      formData.append("username", userDetail.username);
       formData.append("avatar", userDetail.image);
       formData.append("newPassword", userDetail.newPassword);
       formData.append("repeatPassword", userDetail.repeatPassword);

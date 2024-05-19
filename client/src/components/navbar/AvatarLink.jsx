@@ -23,7 +23,8 @@ const AvatarLink = ({ to }) => {
   };
 
   return (
-    <ul className="dropdown-menu dropdown__menu" aria-labelledby="userDropdown">
+    <ul className="dropdown-menu" id="userDropdown">
+      <div className="line"></div>
       <li>
         <Link to={to} className="text-decoration-none">
           <button className="dropdown-item">

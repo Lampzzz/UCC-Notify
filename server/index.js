@@ -11,6 +11,7 @@ import announcementRoute from "./routes/announcementRoute.js";
 import userRoute from "./routes/userRoute.js";
 import bookmarkRoute from "./routes/bookmarkRoute.js";
 import commentRoute from "./routes/commentRoute.js";
+import studentRoute from "./routes/studentRoute.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -38,6 +39,7 @@ app.use("/announcement", announcementRoute);
 app.use("/user", userRoute);
 app.use("/bookmark", bookmarkRoute);
 app.use("/comment", commentRoute);
+app.use("/student", studentRoute);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

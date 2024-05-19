@@ -20,9 +20,9 @@ const Weekly = () => {
           {isLoading ? (
             <p className="fs-1">Loading...</p>
           ) : (
-            <Slick data={news} no={3}>
-              {news.map((announcement, index) => (
-                <div className="announcement__container px-1" key={index}>
+            <div className="row">
+              {news.slice(0, 3).map((announcement, index) => (
+                <div className="col-4 announcement__container" key={index}>
                   <img
                     src={`http://localhost:3000/image/${announcement.image}`}
                     alt={`Image ${index + 1}`}
@@ -44,7 +44,7 @@ const Weekly = () => {
                   </div>
                 </div>
               ))}
-            </Slick>
+            </div>
           )}
         </div>
       </div>

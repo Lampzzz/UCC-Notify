@@ -68,16 +68,17 @@ const Popular = () => {
         {isLoading ? (
           <LoadingSkeleton />
         ) : (
-          <Slick data={filteredAnnouncements} no={4} dots={true} col={"col-3"}>
+          <div className="row">
             {filteredAnnouncements.map((announcement, index) => (
-              <AnnouncementCard
-                key={index}
-                index={announcement._id}
-                announcement={announcement}
-                handleClick={() => hadleContent(announcement._id)}
-              />
+              <div className="col-3" key={index}>
+                <AnnouncementCard
+                  index={announcement._id}
+                  announcement={announcement}
+                  handleClick={() => hadleContent(announcement._id)}
+                />
+              </div>
             ))}
-          </Slick>
+          </div>
         )}
       </div>
     </>

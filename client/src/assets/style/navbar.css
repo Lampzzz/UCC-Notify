@@ -1,3 +1,7 @@
+/* .navbar__dropdown {
+  position: relative;
+}
+
 .navbar__dropdown:hover .dropdown-menu {
   display: block;
 }
@@ -5,4 +9,32 @@
 .dropdown-item:hover {
   background-color: var(--main--color);
   color: #fff;
+}
+
+.dropdown-menu {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+} */
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-menu {
+  position: relative;
+}
+
+.line {
+  content: "";
+  position: absolute;
+  top: 0;
+  background-color: var(--main--color);
+  width: 100%;
+  height: 3px;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
 }

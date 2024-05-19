@@ -47,7 +47,7 @@ const Header = () => {
     <div className="container my-5">
       <Trending />
       <div className="row">
-        <div className="col-12 col-md-8 mb-3 mb-md-0">
+        <div className="col-12 col-lg-8 mb-3 mb-lg-0">
           {announcements.length > 0 && announcements[0].image && (
             <div className="position-relative">
               <img
@@ -72,7 +72,7 @@ const Header = () => {
             </div>
           )}
         </div>
-        <div className="col-12 col-md-4">
+        <div className="col-12 col-lg-4">
           <div className="row row-gap-3 ">{announcementSubHeader()}</div>
         </div>
       </div>

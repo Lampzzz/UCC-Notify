@@ -21,7 +21,7 @@ const NavbarLink = ({ link, label, dropdownItems }) => {
           >
             {label}
           </Link>
-          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+          <ul className="dropdown-menu" id="navbarDropdown">
             {dropdownItems.map((item, index) => (
               <li key={index}>
                 <Link to={item.link} className="dropdown-item">
