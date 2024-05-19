@@ -18,3 +18,11 @@ button:active {
   background-color: none !important;
   color: var(--main--color) !important;
 }
+
+.main--hover {
+  transition: var(--transition);
+}
+
+.main--hover:hover {
+  color: var(--main--color);
+}

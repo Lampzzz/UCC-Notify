@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const ContentButton = ({ id, children }) => {
+const ContentBtn = ({ id, children }) => {
   const navigate = useNavigate();
 
   const hadleContent = () => {
@@ -8,13 +8,10 @@ const ContentButton = ({ id, children }) => {
   };
 
   return (
-    <button
-      className="btn p-0 border-0 text-start d-block"
-      onClick={hadleContent}
-    >
+    <button className="btn p-0 border-0" onClick={hadleContent}>
       <div className="main--hover">{children}</div>
     </button>
   );
 };
 
-export default ContentButton;
+export default ContentBtn;

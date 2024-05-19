@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { fetchNews } from "@Services/api/fetchNews";
 import TitleContainer from "@Components/container/TitleContainer";
 import LoadingSkeleton from "@Components/loading/LoadingSkeleton";
@@ -6,15 +5,10 @@ import AnnouncementCard from "@Components/container/AnnouncementCard";
 import Slick from "@Components/slick/Slick";
 
 const LatestNews = () => {
-  const navigate = useNavigate();
   const { news, isLoading } = fetchNews();
 
-  const handleContent = (id) => {
-    navigate(`/content/${id}`);
-  };
-
   return (
-    <div className="container py-5" id="section">
+    <div className="container-fluid p-5">
       <div className="d-flex justify-content-between mb-3">
         <TitleContainer>Latest News</TitleContainer>
         {news.length > 4 && <p className="mb-0">see more</p>}
@@ -29,7 +23,6 @@ const LatestNews = () => {
                 <AnnouncementCard
                   index={announcement._id}
                   announcement={announcement}
-                  handleClick={() => handleContent(announcement._id)}
                 />
               </div>
             ))}

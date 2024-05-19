@@ -1,5 +1,4 @@
 import Container from "@Components/container/Container";
-import SectionContainer from "@Components/container/SectionContainer";
 import AboutContent from "./AboutContent";
 import uccImage from "@Assets/image/ucc.png";
 import mission from "@Assets/image/mission.png";

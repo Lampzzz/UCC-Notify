@@ -1,7 +1,11 @@
 import { formatDate } from "@Utils/formatDate";
 
-const DateFormat = ({ date, style }) => {
-  return <div className={style}>{formatDate(date)}</div>;
+const DateFormat = ({ date, isDark = true }) => {
+  return (
+    <div className={isDark ? "text-black-50" : "text-white"}>
+      {formatDate(date)}
+    </div>
+  );
 };
 
 export default DateFormat;

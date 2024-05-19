@@ -84,7 +84,7 @@ body {
 }
 
 .announcement__detail {
-  width: 100%;
+  width: 80%;
   opacity: 0;
   position: absolute;
   bottom: 0;
@@ -101,7 +101,8 @@ body {
 }
 
 .announcement__image {
-  height: 400px;
+  height: 500px;
+  width: auto;
 }
 
 .active__category {
@@ -109,7 +110,7 @@ body {
 }
 
 .announcement__card img {
-  height: 200px;
+  height: 250px;
 }
 
 .card__categories {

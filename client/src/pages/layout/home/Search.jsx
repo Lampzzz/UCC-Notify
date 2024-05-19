@@ -5,7 +5,6 @@ import DateFormat from "@Components/container/DateFormat";
 import ContentButton from "@Components/button/ContentButton";
 import { fetchAllAnnouncement } from "@Services/api/fetchAllAnnouncement";
 import Container from "@Components/container/Container";
-import SectionContainer from "@Components/container/SectionContainer";
 import SelectInput from "@Components/form/SelectInput";
 import Categories from "@Components/container/Categories";
 
@@ -18,7 +17,7 @@ const Search = () => {
   const [sortBy, setSortBy] = useState("Latest");
   const navigate = useNavigate();
 
-  const hadleContent = (id) => {
+  const handleContent = (id) => {
     navigate(`/content/${id}`);
   };
 
@@ -42,7 +41,7 @@ const Search = () => {
     }
   }, [announcements, isLoading]);
 
-  // Show the seleted catagories
+  // Show the selected categories
   useEffect(() => {
     if (selectedCategory && selectedCategory !== "All") {
       const filtered = announcements.filter((announcement) =>
@@ -54,7 +53,7 @@ const Search = () => {
     }
   }, [selectedCategory]);
 
-  // Sort the  announcement
+  // Sort the announcements
   useEffect(() => {
     let sortedAnnouncement = [...searchResult];
 
@@ -106,58 +105,67 @@ const Search = () => {
             </div>
           ) : null}
         </div>
-        <div className="d-flex align-items-center my-5">
-          <SelectInput
-            id="categorySelect"
-            label="Category"
-            value={selectedCategory}
-            options={categories.map((category) => ({
-              value: category,
-              label: category,
-            }))}
-            onChange={handleCategoryClick}
-          />
-          <SelectInput
-            id="sortSelect"
-            label="Sort"
-            value={sortBy}
-            options={[
-              { value: "Latest", label: "Latest" },
-              { value: "Oldest", label: "Oldest" },
-              { value: "NameAscending", label: "Title (A to Z)" },
-              { value: "NameDescending", label: "Title (Z to A)" },
-            ]}
-            onChange={handleSortChange}
-          />
-        </div>
-        <div className="row">
-          {searchResult.map((announcement, index) => (
-            <div
-              className="col-3 card border-0 px-3 announcement__card"
-              key={index}
-            >
-              <div className="position-relative">
-                <img
-                  src={`http://localhost:3000/image/${announcement.image}`}
-                  alt={`Image ${index + 1}`}
-                  className="card-img-top"
-                />
-                <div className="card__categories">
-                  <Categories category={announcement.categories} />
-                </div>
-              </div>
-              <div className="card-body px-0">
-                <DateFormat
-                  style={"text-black-50"}
-                  date={announcement.createdAt}
-                />
-                <ContentButton onClick={() => hadleContent(announcement._id)}>
-                  <p>{announcement.title}</p>
-                </ContentButton>
-              </div>
+        {announcements.length === 0 ? (
+          <p>There are no available news and events</p>
+        ) : (
+          <>
+            <div className="d-flex align-items-center my-5">
+              <SelectInput
+                id="categorySelect"
+                label="Category"
+                value={selectedCategory}
+                options={categories.map((category) => ({
+                  value: category,
+                  label: category,
+                }))}
+                onChange={handleCategoryClick}
+              />
+              <SelectInput
+                id="sortSelect"
+                label="Sort"
+                value={sortBy}
+                options={[
+                  { value: "Latest", label: "Latest" },
+                  { value: "Oldest", label: "Oldest" },
+                  { value: "NameAscending", label: "Title (A to Z)" },
+                  { value: "NameDescending", label: "Title (Z to A)" },
+                ]}
+                onChange={handleSortChange}
+              />
             </div>
-          ))}
-        </div>
+            {searchResult.length === 0 ? (
+              <div className="text-center py-5">
+                <p>We are sorry! We couldn't find results for "{search}".</p>
+              </div>
+            ) : (
+              <div className="row">
+                {searchResult.map((announcement, index) => (
+                  <div
+                    className="col-3 card border-0 px-2 announcement__card"
+                    key={index}
+                  >
+                    <div className="position-relative">
+                      <img
+                        src={`http://localhost:3000/image/${announcement.image}`}
+                        alt={`Image ${index + 1}`}
+                        className="card-img-top"
+                      />
+                      <div className="card__categories">
+                        <Categories category={announcement.categories} />
+                      </div>
+                    </div>
+                    <div className="card-body px-0">
+                      <DateFormat date={announcement.createdAt} />
+                      <ContentButton id={announcement._id}>
+                        <p>{announcement.title}</p>
+                      </ContentButton>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
+        )}
       </div>
     </Container>
   );

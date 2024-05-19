@@ -2,7 +2,7 @@ import DateFormat from "@Components/container/DateFormat";
 import ContentButton from "@Components/button/ContentButton";
 import Categories from "@Components/container/Categories";
 
-const AnnouncementCard = ({ announcement, handleClick }) => {
+const AnnouncementCard = ({ announcement }) => {
   return (
     <div className="card border-0 announcement__card">
       <div className="position-relative">
@@ -16,8 +16,8 @@ const AnnouncementCard = ({ announcement, handleClick }) => {
         </div>
       </div>
       <div className="card-body px-0">
-        <DateFormat style={"text-black-50"} date={announcement.createdAt} />
-        <ContentButton onClick={handleClick}>
+        <DateFormat date={announcement.createdAt} />
+        <ContentButton id={announcement._id}>
           <p>{announcement.title}</p>
         </ContentButton>
       </div>
